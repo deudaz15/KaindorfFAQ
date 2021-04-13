@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <!-- deployment -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+
+        <style>
+            body, header{
+                position: relative;
+                text-align: center;
+                margin:1%;
+                font-family: arial;
+                font-size: 1.3em;
+                background-color: seashell;
+            }
+            button{
+                border: 0px;
+                background-color: powderblue;
+                padding: 0.4%;
+            }
+            header{
+                font-size: 3em;
+                position: sticky;
+                padding: 0% 30% 0% 30%;
+                border-bottom: 1px solid blue;
+            }
+            #sidenav-left{
+                position: fixed;
+                left: 0.4%;
+                top: 30%;
+                border-right: 1px solid blue;
+                background-color: powderblue;
+                padding:3%;
+            }
+            #sidenav-right{
+                position: fixed;
+                right: 0.4%;
+                top: 30%;
+                border-left: 1px solid blue;
+                background-color: powderblue;
+                padding:3%;
+            }
+            footer{
+                position: sticky;
+                bottom: 0%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <header>
+                <form>
+                    <button>HTBLA Kaindorf FAQ</button>
+                    <button>Log In</button>
+                    <button>Sign Up</button>
+                </form>
+            </header>
+
+            <div id="sidenav-left">
+
+            </div>
+
+            <div id="sidenav-right">
+
+            </div>
+
+
+            <div id="main-content">
+
+                <div id="filter">
+
+                </div>
+
+                <div id="msg">
+                    {{ message }}
+                </div>
+
+                <div id="questions">
+                    <ol>
+                        <li v-for="q in questions">
+                            {{ q.text }}
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            Copyright Kaindorf 2021
+        </footer>
+
+        <script>
+            var app = new Vue({
+                el: '#msg',
+                data: {
+                    message: 'Hello Vue!'
+                }
+            });
+            let request = new XMLHttpRequest();
+            request.open('GET', "deudaz15.bplaced.net/KaindorfFAQ/Postgres.txt");
+            request.responseType = 'text';
+            request.onload = function () {
+                poemDisplay.textContent = request.response;
+            };
+            request.send();
+            var content = request.responseText();
+
+            var app4 = new Vue({
+                el: '#questions',
+                data: {
+                    questions: [
+                        {text: content},
+                        {text: "t1 "},
+                        {text: "t2"}
+                    ]
+                }
+            })
+
+
+            //https://www.w3schools.com/xml/ajax_examples.asp
+            //https://vuejs.org/v2/guide/
+
+        </script>
+    </body>
+</html>
